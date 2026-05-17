@@ -1,36 +1,75 @@
-# Portfolio
+# AI Image Generator Bot
 
-Personal portfolio site for Akash Singh — static HTML/CSS/JS.
+A Telegram bot that generates images from text prompts using AI image services.
 
-## Contents
-- index.html, style.css, main.js — front-end source
-- assets/ — images and CV (images are WebP)
-- scripts/convert_to_webp.py — convert images to WebP
-- scripts/remove_pngs.py — remove original PNGs (cleanup)
+## Features
+- Generate images with text prompts
+- Supports custom width, height, and model options
+- Uses `Pollinations.ai` first, then falls back to `Arta.ai`
+- Sends the generated image back directly in Telegram
+- Built with `pyTelegramBotAPI`
 
-## Run locally
-Open index.html in a browser, or serve with a simple HTTP server:
+## Commands
+- `/start` — welcome message and usage guide
+- `/help` — same as `/start`
+- `/admin` — bot creator information
+- `/img` — generate an image
 
-```powershell
-python -m http.server 8000
-# then open http://localhost:8000
+## Usage
+Basic prompt:
+
+```text
+/img a cute cat wearing sunglasses
 ```
 
-## Image notes
-- Images in assets/img were converted to .webp for smaller size and
-  index.html was updated to reference the .webp files.
+Custom size:
 
-## Deployment (GitHub)
-1. Push to main (already configured for this repo).
-2. To publish with GitHub Pages: go to repository Settings → Pages and
-   choose the main branch (root) as the source.
+```text
+/img 512 512 a futuristic robot in neon lights
+```
 
-## Scripts
-- Convert images: python scripts/convert_to_webp.py assets/img [quality]
-- Remove original PNGs: python scripts/remove_pngs.py
+Custom model:
 
-## Contact
-Akash — akashsingh.130912@gmail.com
+```text
+/img 1024 768 flux a cinematic city skyline at night
+```
 
----
-Generated and added to repository by automation; edit as needed.
+Format:
+
+```text
+/img [width] [height] [model] [prompt]
+```
+
+Supported model examples:
+- `flux`
+- `stable-diffusion`
+- `dall-e`
+- `glide`
+
+## Setup
+1. Install Python 3.10+.
+2. Install dependencies:
+
+```powershell
+pip install -r requirements.txt
+```
+
+3. Add your Telegram bot token to `token.txt` in the project root.
+4. Start the bot:
+
+```powershell
+python bot.py
+```
+
+## Project Structure
+- `bot.py` — main bot logic
+- `requirements.txt` — Python dependencies
+- `token.txt` — local Telegram bot token file
+
+## Notes
+- The bot first tries `Pollinations.ai` for image generation.
+- If that fails, it falls back to `Arta.ai`.
+- Keep `token.txt` private and do not commit it to GitHub.
+
+## Contributors
+Created by Shrikant Bhama, Akash Singh, and Sajjan Singh.
